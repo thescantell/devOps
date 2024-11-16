@@ -7,3 +7,5 @@ git reset --soft HEAD~1 : revert changes but still keeps in staging area for rev
 git reset --hard HEAD~1 : resvert changes and deleted recently changes also 
 
 git branch <branch_name>
+
+git cherry-pick <commit-id> : it will apply that commit changes to current branch 
