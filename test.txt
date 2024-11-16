@@ -1,3 +1,9 @@
 welcome to devops
 
 this is second class of devops
+
+git reset --soft HEAD~1 : revert changes but still keeps in staging area for review
+
+git reset --hard HEAD~1 : resvert changes and deleted recently changes also 
+
+git branch <branch_name>
