@@ -81,3 +81,12 @@ mvn verify
 mvn install
 mvn publish
 ----------------------------------
+mvn POM.xml
+-----------------------------------
+Project object model file
+ set of instructions for mvn build and run 
+ and dependences and just like blue print of project 
+
+mvn archetype:generate : templates
+select one template: 2201
+version of template: 
