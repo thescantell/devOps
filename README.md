@@ -90,3 +90,17 @@ Project object model file
 mvn archetype:generate : templates
 select one template: 2201
 version of template: 
+
+
+::JENKINS::
+----------------------------------------------
+
+download from : https://www.jenkins.io/download/thank-you-downloading-windows-installer-stable/
+Environment variables:
+
+JENKINS_HOME=<installation_path>
+Path add = %JENKINS_HOME%/bin
+
+pulgins: ( plugin and play type of working)
+
+    each tool treat as plugin and install as plugins 

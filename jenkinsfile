@@ -1,45 +1,20 @@
-pipeline{
-    label "any"
-
-stages{
-    stage("sourcecode"){
-        steps{
-            script{
-                bat""" git clone https://github.com/thescantell/devOps.git
-                        git checkout main 
-                """
+pipeline {
+    agent any
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/thescantell/devOps.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'mvn clean package'
+            }
+            post {
+                success {
+                    archiveArtifacts 'target/*.jar'
+                }
             }
         }
     }
-    stage("build"){
-        steps{
-            script{
-                bat""" cd <projectname>
-                        mvn package
-                """
-            }
-        }
-    }
-    stage("code scan"){
-        steps{
-            script{
-                bat"""
-                    cd <source_code_folder>
-                    sonar::sonarcan
-                """
-            }
-        }
-    }
-    stage("saving artifact"){
-        steps{
-            script{
-                bat"""
-                md output  
-                      mv /target/*jar  output/
-                        echo ' buid is success"
-                """
-            }
-        }
-    }
-}
 }
