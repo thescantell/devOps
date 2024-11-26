@@ -1,18 +1,37 @@
 pipeline {
     agent any
+    parameters {
+        string(
+            name: 'Mavengoals', 
+            defaultValue: 'clean install', 
+            description: 'Maven goals to execute (e.g., clean install, package)'
+        )
+        string(
+            name: 'branch', 
+            defaultValue: 'main', 
+            description: 'enter branch'
+        )
+    }
+    environment {
+        mvn = 'C:\\Program Files\\Maven\\apache-maven-3.9.5\\bin\\mvn' // Windows path format
+    }
+
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/thescantell/devOps.git'
+                git branch: '${params.branch}', url: 'https://github.com/thescantell/devOps.git'
             }
         }
+
         stage('Build') {
             steps {
-                bat 'mvn clean package'
+                // Use double quotes for variable interpolation
+                bat "\"${mvn}\" ${params.Mavengoals}"
             }
             post {
                 success {
-                    archiveArtifacts 'target/*.jar'
+                    // Ensure the target folder exists before archiving
+                    archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
                 }
             }
         }
