@@ -38,6 +38,11 @@
         <artifactId>maven-site-plugin</artifactId>
         <version>3.12.1</version>
       </plugin>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>latest-version</version>
+      </plugin>
 
       <!-- Maven Resources Plugin -->
       <plugin>
